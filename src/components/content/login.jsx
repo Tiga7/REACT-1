@@ -1,23 +1,65 @@
 import React, { Component } from 'react';
 import BaseCord from './baseCord';
 import $ from 'jquery'
+import {Radio} from 'antd'
 class Login extends Component {
     state = { 
+        user_type:'',
         error_msg:'',
         userId:'',
         password:'',
         username:'',
         is_login:false
     } 
+    onChange = (e) => {
+        this.setState({
+            user_type:e.target.value
+        })
+    };
     handleLogin=(e)=>{
         e.preventDefault();
         if(this.state.userId===''){
             this.setState({error_msg:'用户名不能为空'})
         }else if(this.state.password===''){
             this.setState({error_msg:'密码不能为空'})
-        }else{
+        }else if(this.state.user_type===''){
+            this.setState({error_msg:'请选择您的身份'})
+        }else if(this.state.user_type==='student'){
             $.ajax({
                 url: 'http://localhost:8080/ptc/user/login',
+                data: {
+                    userId:this.state.userId,
+                    password:this.state.password,
+                },
+                type:'post',
+                dataType: 'text',
+                //跨域请求时 session会改变就用这个
+                // xhrFields: {
+                //     withCredentials: true
+                // },
+                traditional:true,
+                success: resp=>{
+                    if(resp==='succeed'){
+                        this.setState({
+                        is_login:true,
+                        })
+                        window.location.href="/home";
+                    }else{
+                        this.setState({
+                            error_msg:'请检查账号密码是否正确'
+                        })
+                    }
+                },
+                error:resp=>{
+                    this.setState({
+                        error_msg:'网络出问题'
+                    })
+                    // this.setState({error_msg:'用户名或密码错误'});
+                }
+            })
+        }else if(this.state.user_type==='admin'){
+            $.ajax({
+                url: 'http://localhost:8080/ptc/admin/login',
                 data: {
                     userId:this.state.userId,
                     password:this.state.password,
@@ -45,6 +87,7 @@ class Login extends Component {
             })
         }
     }
+    
     render() { 
         return (
             <React.Fragment>
@@ -52,7 +95,11 @@ class Login extends Component {
                 <div className="container">
                         <div className="row justify-content-md-center">
                             <div className="col col-sm-3">
-                            <form>
+                            <Radio.Group onChange={this.onChange} >
+                            <Radio value={'student'}>学生</Radio>
+                            <Radio value={'admin'}>管理员</Radio>
+                            </Radio.Group>
+                                <form>
                                 <div className="mb-3">
                                     <label htmlFor="userId" className="form-label">账号(学号):</label>
                                     <input onChange={(e)=>this.setState({userId:e.target.value})} type="text" className="form-control" id="userId" placeholder='账号(学号)'/>

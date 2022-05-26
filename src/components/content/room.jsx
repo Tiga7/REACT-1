@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import BaseCord from './baseCord';
-import '../css/room.css'
 import { Layout, Breadcrumb } from 'antd';
 
-
-
 const { Content, Footer } = Layout;
-
 
 class Room extends Component {
     state = { 

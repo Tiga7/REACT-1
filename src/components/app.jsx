@@ -12,9 +12,13 @@ import Room from './content/room';
 import Student from './content/student';
 
 class App extends Component {
-    state = {  } 
+    state = { 
+        username:'',
+        is_login:false
+     } 
     render() { 
         return (
+
             <React.Fragment>
                 <Navbar is_login={'hhhh'} username={'gan'} />
                 <div className='container'>
@@ -25,8 +29,9 @@ class App extends Component {
                         <Route path='/about' element={<About></About>}></Route>
                         <Route path='/student/*' element={<Student></Student>}></Route>
                         <Route path='/room' element={<Room></Room>}></Route>
-                        <Route path='/login/*' element={<Login></Login>}></Route>
-                        <Route path='/register' element={<Register></Register>}></Route>
+                        <Route path='/login/*' element={this.state.is_login?<navigator replace to="/home"/>:<Login/>}></Route>
+                        <Route path='/register' element={this.state.is_login?<navigator replace to="/home"/>:<Register/>}></Route>
+
                         <Route path='/404' element={<NotFound></NotFound>}></Route>
                         <Route path='*' element={<Navigate replace to={'/404'}></Navigate>}></Route>
                     </Routes>

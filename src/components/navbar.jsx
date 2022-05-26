@@ -8,7 +8,7 @@ class Navbar extends Component {
     render() { 
         return (
             <React.Fragment>
-                <nav className="navbar navbar-light navbar-expand-lg navbar-light " style={{backgroundColor:'#e3f2fd'}}>
+                <nav className="navbar navbar-light navbar-expand-lg navbar-light " style={{backgroundColor:'#e3f2fd',borderRadius:'5px'}}>
                 <div className="container">
                     <Link className="navbar-brand" to="/">打卡</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,17 +31,18 @@ class Navbar extends Component {
                         <li className="nav-item">
                         <Link className="nav-link" to="/room">自习室管理</Link>
                         </li>
-                        
 
                     </ul>
                
                     <ul className="navbar-nav">
+                        
                         <li className="nav-item">
                         <Link className="nav-link" to="/login">登录</Link>
                         </li>
                         <li className="nav-item">
                         <Link className="nav-link" to="/register">激活</Link>
                         </li>
+                        
                     </ul>
                     </div>
                 </div>
