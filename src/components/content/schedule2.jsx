@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import BaseCord from "./baseCord";
-class About extends Component {
+class Schedule2 extends Component {
 	state = {};
 	render() {
 		return (
 			<React.Fragment>
-				<BaseCord>关于</BaseCord>
+				<BaseCord>用户课表相关操作</BaseCord>
 			</React.Fragment>
 		);
 	}
 }
 
-export default About;
+export default Schedule2;

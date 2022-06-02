@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import BaseCord from "./baseCord";
-class About extends Component {
+class PTC extends Component {
 	state = {};
 	render() {
 		return (
 			<React.Fragment>
-				<BaseCord>关于</BaseCord>
+				<BaseCord>打卡页面</BaseCord>
 			</React.Fragment>
 		);
 	}
 }
 
-export default About;
+export default PTC;

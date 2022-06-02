@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import BaseCord from "./baseCord";
-class About extends Component {
+class Room2 extends Component {
 	state = {};
 	render() {
 		return (
 			<React.Fragment>
-				<BaseCord>关于</BaseCord>
+				<BaseCord>收藏自习室操作</BaseCord>
 			</React.Fragment>
 		);
 	}
 }
 
-export default About;
+export default Room2;
